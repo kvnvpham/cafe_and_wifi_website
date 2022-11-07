@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Cafes and Wifi{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="text-center welcome-margin">
+            <h1 class="title">Welcome to Cafes and Wifi</h1>
+            <h3 class="subtitle">View or add to our database of Cafes!</h3>
+            <a class="btn btn-primary main" role="button" href="{{ url_for('all_cafes') }}">Click Me!</a>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+
+{% endblock %}

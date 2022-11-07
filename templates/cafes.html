@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Cafes{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <div>
+            <h2>All Cafes</h2>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Map URL</th>
+                        <th scope="col">Image URL</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Sockets</th>
+                        <th scope="col">Restrooms</th>
+                        <th scope="col">Wifi</th>
+                        <th scope="col">Make/Take Calls</th>
+                        <th scope="col">Seats</th>
+                        <th scope="col">Coffee Pricing</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for cafe in cafes %}
+                    <tr>
+                        <th scope="row">{{ cafe.id }}</th>
+                        <td>{{ cafe.name }}</td>
+                        <td><a href="{{ cafe.map_url }}"><i class="fa-sharp fa-solid fa-location-dot icon"></i></a></td>
+                        <td><a href="{{ cafe.img_url }}"><i class="fa-solid fa-image icon"></i></a></td>
+                        <td>{{ cafe.location }}</td>
+
+                        {% if cafe.has_sockets %}
+                        <td><i class="fa-solid fa-check"></i></td>
+                        {% else %}
+                        <td> </td>
+                        {% endif %}
+
+                        {% if cafe.has_toilet %}
+                        <td><i class="fa-solid fa-check"></i></td>
+                        {% else %}
+                        <td> </td>
+                        {% endif %}
+
+                        {% if cafe.has_wifi %}
+                        <td><i class="fa-solid fa-check"></i></td>
+                        {% else %}
+                        <td> </td>
+                        {% endif %}
+
+                        {% if cafe.can_take_calls %}
+                        <td><i class="fa-solid fa-check"></i></td>
+                        {% else %}
+                        <td> </td>
+                        {% endif %}
+
+                        <td>{{ cafe.seats }}</td>
+                        <td>{{ cafe.coffee_price }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_cafe', cafe_id=cafe.id) }}">
+                                <i class="fa-solid fa-pen-to-square icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="add-cafe">
+            <a class="btn btn-primary" href="{{ url_for('add_cafe') }}">Add A Cafe</a>
+        </div>
+
+    </div>
+
+    {% include 'footer.html' %}
+
+{% endblock %}

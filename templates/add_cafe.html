@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Add Cafe{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid cafe-background">
+
+        <div>
+            {% if cafe_id %}
+                <h2>Edit Cafe</h2>
+            {% else %}
+                <h2>Add Cafe</h2>
+            {% endif %}
+        </div>
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if cafe_id %}
+        <div class="btn-delete">
+            <a class="btn btn-primary" href="{{ url_for('delete_cafe', cafe_id=cafe_id) }}">Delete</a>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'primary', 'cancel': 'primary'}) }}
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+
+{% endblock %}
+
+

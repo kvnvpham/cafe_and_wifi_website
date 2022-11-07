@@ -1,0 +1,12 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Roboto:wght@400;900&display=swap"
+    rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://kit.fontawesome.com/d48c10707a.js" crossorigin="anonymous"></script>
+{% endblock %}
